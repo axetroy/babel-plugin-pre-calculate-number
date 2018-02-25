@@ -1,0 +1,30 @@
+{
+  "name": "babel-plugin-pre-calculate-number",
+  "version": "0.0.1",
+  "description": "pre calculate number expression",
+  "main": "index.js",
+  "dependencies": {
+    "big.js": "^5.0.3"
+  },
+  "devDependencies": {
+    "@types/big.js": "^4.0.3",
+    "ava": "^0.25.0",
+    "babel-core": "^6.26.0",
+    "babel-types": "^6.26.0",
+    "coveralls": "^3.0.0",
+    "nyc": "^11.4.1"
+  },
+  "scripts": {
+    "test": "nyc ava test/**/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axetroy/babel-plugin-pre-calculate-number.git"
+  },
+  "author": "Axetroy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Amandesu/babel-plugin-pre-calculate-number/issues"
+  },
+  "homepage": "https://github.com/Amandesu/babel-plugin-pre-calculate-number#readme"
+}
