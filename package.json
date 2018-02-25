@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-pre-calculate-number",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "pre calculate number expression",
   "main": "index.js",
   "dependencies": {
