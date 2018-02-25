@@ -13,7 +13,7 @@ cache:
     - node_modules
 
 script:
-  - yarn run build && yarn run test
+  - npm run test
 
 after_script:
-  - yarn run coverage
+  - npm run coverage
