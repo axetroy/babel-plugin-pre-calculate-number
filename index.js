@@ -20,6 +20,15 @@ function calcExpression(left, operator, right) {
     case "%":
       result = +new Big(left).mod(right);
       break;
+    case ">>":
+      result = left >> right;
+      break;
+    case "<<":
+      result = left << right;
+      break;
+    case "|":
+      result = left | right;
+      break;
     case "**":
       let i = right;
       while (--i) {
