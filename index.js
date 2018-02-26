@@ -62,16 +62,31 @@ const visitor = {
       const member = t.isMemberExpression(node.left) ? node.left : node.right;
       const number = t.isNumericLiteral(node.left) ? node.left : node.right;
 
-      if (
-        member.object &&
-        member.object.name === "Math" &&
-        member.property.name === "PI"
-      ) {
-        result = calcExpression(
-          node.left === member ? Math.PI : number.value,
-          node.operator,
-          node.right === number ? number.value : Math.PI
-        );
+      if (member.object && member.object.name === "Math") {
+        let method;
+
+        if (t.isIdentifier(member.property)) {
+          method = member.property.name;
+        } else if (t.isStringLiteral(member.property)) {
+          method = member.property.value;
+        }
+
+        switch (method) {
+          case "E":
+          case "LN10":
+          case "LOG2E":
+          case "LOG10E":
+          case "SQRT1_2":
+          case "SQRT2":
+          case "PI":
+            result = calcExpression(
+              node.left === member ? Math[method] : number.value,
+              node.operator,
+              node.right === number ? number.value : Math[method]
+            );
+            break;
+          default:
+        }
       }
     } else if (
       t.isNumericLiteral(node.left) &&
@@ -90,6 +105,39 @@ const visitor = {
       parentPath &&
         t.isBinaryExpression(parentPath.node) &&
         visitor.BinaryExpression.call(this, parentPath);
+    }
+  },
+  CallExpression(path) {
+    const node = path.node;
+    // only allow calc Math's method
+    if (
+      t.isMemberExpression(node.callee) &&
+      t.isIdentifier(node.callee.object) &&
+      node.callee.object.name === "Math"
+    ) {
+      let method;
+      if (t.isIdentifier(node.callee.property)) {
+        method = node.callee.property.name;
+      } else if (t.isStringLiteral(node.callee.property)) {
+        method = node.callee.property.value;
+      }
+      let result;
+
+      // The argument of this callExpression
+      const args = node.arguments;
+
+      switch (method) {
+        default:
+          // If the all argument is numberic literal
+          const isAllNumber = args.every(v => t.isNumericLiteral(v));
+          if (isAllNumber) {
+            result = Math[method].apply(Math, args.map(v => v.value));
+          }
+      }
+
+      if (result !== undefined) {
+        path.replaceWith(t.numericLiteral(result));
+      }
     }
   }
 };
