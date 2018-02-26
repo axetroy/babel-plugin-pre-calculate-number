@@ -69,7 +69,9 @@ const visitor = {
       let parentPath = path.parentPath;
 
       // traverse parent node
-      parentPath && visitor.BinaryExpression.call(this, parentPath);
+      parentPath &&
+        t.isBinaryExpression(parentPath.node) &&
+        visitor.BinaryExpression.call(this, parentPath);
     }
   }
 };
