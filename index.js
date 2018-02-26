@@ -1,13 +1,13 @@
-var babel = require('babel-core');
-var t = require('babel-types');
-const Big = require('big.js');
+var babel = require("babel-core");
+var t = require("babel-types");
+const Big = require("big.js");
 
 function calcExpression(left, operator, right) {
   let result;
   switch (operator) {
     case "+":
       result = +new Big(left).plus(right);
-      break
+      break;
     case "-":
       result = +new Big(left).minus(right);
       break;
@@ -16,6 +16,9 @@ function calcExpression(left, operator, right) {
       break;
     case "/":
       result = +new Big(left).div(right);
+      break;
+    case "%":
+      result = +new Big(left).mod(right);
       break;
     case "**":
       let i = right;
@@ -34,16 +37,29 @@ const visitor = {
     const node = path.node;
     let result;
     // example: Math.PI * (2 ** 2);
-    if (t.isMemberExpression(node.left) && t.isNumericLiteral(node.right) || t.isNumericLiteral(node.left) && t.isMemberExpression(node.right)) {
+    if (
+      (t.isMemberExpression(node.left) && t.isNumericLiteral(node.right)) ||
+      (t.isNumericLiteral(node.left) && t.isMemberExpression(node.right))
+    ) {
       const member = t.isMemberExpression(node.left) ? node.left : node.right;
       const number = t.isNumericLiteral(node.left) ? node.left : node.right;
 
-      if (member.object && member.object.name === "Math" && member.property.name === "PI") {
-        result = calcExpression(node.left === member ? Math.PI : number.value, node.operator, node.right === number ? number.value : Math.PI)
+      if (
+        member.object &&
+        member.object.name === "Math" &&
+        member.property.name === "PI"
+      ) {
+        result = calcExpression(
+          node.left === member ? Math.PI : number.value,
+          node.operator,
+          node.right === number ? number.value : Math.PI
+        );
       }
-    }
-    else if (t.isNumericLiteral(node.left) && t.isNumericLiteral(node.right)) {
-      result = calcExpression(node.left.value, node.operator, node.right.value)
+    } else if (
+      t.isNumericLiteral(node.left) &&
+      t.isNumericLiteral(node.right)
+    ) {
+      result = calcExpression(node.left.value, node.operator, node.right.value);
     }
 
     // if got result, should update parent node
@@ -58,8 +74,8 @@ const visitor = {
   }
 };
 
-module.exports = function (babel) {
+module.exports = function(babel) {
   return {
     visitor
   };
-}
+};
