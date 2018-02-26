@@ -1,1 +1,0 @@
-const result = 100 / 5 / 2;
