@@ -14,28 +14,26 @@ Before:
 
 ```javascript
 const result = 1 + 2 + 3 + 4 + 5;
+const area = Math.PI * 2 ** 2;
+const oneDaySeconds = 3600 * 1000 * 24;
+const minAge = Math.min(12, 18, 22);
+
+setTimeout(function() {
+  // do something
+}, 1000 * 2);
 ```
 
 After:
 
 ```javascript
 const result = 15;
-```
+const area = 12.566370614359172;
+const oneDaySeconds = 86400000;
+const minAge = 12;
 
-Before:
-
-```javascript
-setTimeout(function(){
+setTimeout(function() {
   // do something
-},1000 * 2);
-```
-
-After:
-
-```javascript
-setTimeout(function(){
-  // do something
-},2000);
+}, 2000);
 ```
 
 ## Contributors
@@ -43,7 +41,7 @@ setTimeout(function(){
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 
 | [<img src="https://avatars1.githubusercontent.com/u/9758711?v=3" width="100px;"/><br /><sub>Axetroy</sub>](http://axetroy.github.io)<br />[💻](https://github.com/axetroy/babel-plugin-pre-calculate-number/commits?author=axetroy) 🔌 [⚠️](https://github.com/axetroy/babel-plugin-pre-calculate-number/commits?author=axetroy) [🐛](https://github.com/axetroy/babel-plugin-pre-calculate-number/issues?q=author%3Aaxetroy) 🎨 |
-| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
