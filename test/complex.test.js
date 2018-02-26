@@ -1,7 +1,7 @@
 import test from "ava";
 import { transform } from "babel-core";
 import path from "path";
-import preCalculateNumberPlugin from '../index';
+import preCalculateNumberPlugin from "../index";
 
 test("complex-1", t => {
   const { code } = transform(`const result = 100 + 10 - 50;`, {
@@ -42,4 +42,20 @@ test("complex-4", t => {
     plugins: [preCalculateNumberPlugin]
   });
   t.deepEqual(code, `const day = 86400000;`);
+});
+
+test("complex-4", t => {
+  const { code } = transform(
+    `setTimeout(function () {
+  // do something
+}, 1000 * 2);`,
+    {
+      plugins: [preCalculateNumberPlugin]
+    }
+  );
+  t.deepEqual(
+    code,`setTimeout(function () {
+  // do something
+}, 2000);`
+  );
 });
