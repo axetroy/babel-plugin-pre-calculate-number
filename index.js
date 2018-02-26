@@ -23,11 +23,20 @@ function calcExpression(left, operator, right) {
     case ">>":
       result = left >> right;
       break;
+    case ">>>":
+      result = left >>> right;
+      break;
     case "<<":
       result = left << right;
       break;
     case "|":
       result = left | right;
+      break;
+    case "&":
+      result = left & right;
+      break;
+    case "^":
+      result = left ^ right;
       break;
     case "**":
       let i = right;
