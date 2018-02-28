@@ -15,7 +15,7 @@ Before:
 ```javascript
 const result = 1 + 2 + 3 + 4 + 5;
 const area = Math.PI * 2 ** 2;
-const oneDaySeconds = 3600 * 1000 * 24;
+const oneDaySeconds = 60 * 60 * 24;
 const minAge = Math.min(12, 18, 22);
 
 setTimeout(function() {
@@ -28,7 +28,7 @@ After:
 ```javascript
 const result = 15;
 const area = 12.566370614359172;
-const oneDaySeconds = 86400000;
+const oneDaySeconds = 86400;
 const minAge = 12;
 
 setTimeout(function() {
