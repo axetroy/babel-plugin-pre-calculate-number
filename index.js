@@ -73,6 +73,7 @@ const visitor = {
 
         switch (method) {
           case "E":
+          case "LN2":
           case "LN10":
           case "LOG2E":
           case "LOG10E":
