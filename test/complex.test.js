@@ -59,3 +59,23 @@ test("complex-4", t => {
 }, 2000);`
   );
 });
+
+test("complex-5", t => {
+  const { code } = transform(
+    `const result = +5 + ~(-3);`,
+    {
+      plugins: [preCalculateNumberPlugin]
+    }
+  );
+  t.deepEqual(code,`const result = 7;`);
+});
+
+test("complex-6", t => {
+  const { code } = transform(
+    `const result = ~(5 ^ 3) * 6;`,
+    {
+      plugins: [preCalculateNumberPlugin]
+    }
+  );
+  t.deepEqual(code,`const result = -42;`);
+});

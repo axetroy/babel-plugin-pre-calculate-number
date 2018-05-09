@@ -44,3 +44,10 @@ test(">>>", t => {
   });
   t.deepEqual(code, `const result = 1;`);
 });
+
+test("~", t => {
+  const { code } = transform(`const result = ~1;`, {
+    plugins: [preCalculateNumberPlugin]
+  });
+  t.deepEqual(code, `const result = -2;`);
+});
