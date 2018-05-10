@@ -73,6 +73,7 @@ const visitor = {
 
         switch (method) {
           case "E":
+          case "LN2":
           case "LN10":
           case "LOG2E":
           case "LOG10E":
@@ -105,6 +106,9 @@ const visitor = {
       parentPath &&
         t.isBinaryExpression(parentPath.node) &&
         visitor.BinaryExpression.call(this, parentPath);
+      parentPath &&
+        t.isUnaryExpression(parentPath.node) &&
+        visitor.UnaryExpression.call(this, parentPath)
     }
   },
   CallExpression(path) {
@@ -137,6 +141,39 @@ const visitor = {
 
       if (result !== undefined) {
         path.replaceWith(t.numericLiteral(result));
+      }
+    }
+  },
+  UnaryExpression(path) {
+    const node = path.node;
+    if (t.isUnaryExpression(node) && t.isNumericLiteral(node.argument)) {
+      let result
+      switch (node.operator) {
+        case "+":
+          result = +node.argument.value;
+          break;
+        case "-":
+          result = -node.argument.value;
+          break;
+        case "~":
+          result = ~node.argument.value;
+          break;
+        default:
+      }
+
+      if (result !== undefined) {
+        path.replaceWith(t.numericLiteral(result));
+        let parentPath = path.parentPath;
+        if (parentPath) {
+          if (t.isBinaryExpression(parentPath.node)) {
+            // example: 5 + (~3);
+            visitor.BinaryExpression.call(this, parentPath);
+          }
+          if (t.isUnaryExpression(parentPath.node)) {
+            // example: -(~2);
+            visitor.UnaryExpression.call(this, parentPath);
+          }
+        }
       }
     }
   }
