@@ -1,6 +1,5 @@
 # Babel-plugin-pre-calculate-number
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/axetroy/babel-plugin-pre-calculate-number.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/axetroy/babel-plugin-pre-calculate-number.svg?branch=master)](https://travis-ci.org/axetroy/babel-plugin-pre-calculate-number)
 [![Coverage Status](https://coveralls.io/repos/github/axetroy/babel-plugin-pre-calculate-number/badge.svg?branch=master)](https://coveralls.io/github/axetroy/babel-plugin-pre-calculate-number?branch=master)
 [![Dependency](https://david-dm.org/axetroy/babel-plugin-pre-calculate-number.svg)](https://david-dm.org/axetroy/babel-plugin-pre-calculate-number)
