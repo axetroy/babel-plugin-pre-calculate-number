@@ -6,7 +6,7 @@
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 [![Prettier](https://img.shields.io/badge/Code%20Style-Prettier-green.svg)](https://github.com/prettier/prettier)
 ![Node](https://img.shields.io/badge/node-%3E=8.9-blue.svg?style=flat-square)
-[![npm version](https://badge.fury.io/js/babel-plugin-pre-calculate-number.svg)](https://badge.fury.io/js/babel-plugin-pre-calculate-number)
+[![npm version](https://badge.fury.io/js/babel-plugin-pre-calculate-number.svg)](https://badge.fury.io/js/babel-plugin-pre-calculate-number) [![Greenkeeper badge](https://badges.greenkeeper.io/axetroy/babel-plugin-pre-calculate-number.svg)](https://greenkeeper.io/)
 ![Size](https://github-size-badge.herokuapp.com/axetroy/babel-plugin-pre-calculate-number.svg)
 
 Before:
