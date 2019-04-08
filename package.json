@@ -8,11 +8,11 @@
   },
   "devDependencies": {
     "@types/big.js": "^4.0.3",
-    "ava": "^0.25.0",
+    "ava": "^1.4.1",
     "babel-core": "^6.26.0",
     "babel-types": "^6.26.0",
     "coveralls": "^3.0.0",
-    "nyc": "^11.4.1"
+    "nyc": "^13.3.0"
   },
   "scripts": {
     "test": "nyc ava test/**/*.test.js"
